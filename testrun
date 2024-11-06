@@ -2,7 +2,7 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-public class TestRunner {
+public class testrun {
     public static void main(String[] args) {
         // Run tests from Dec2HexTest class
         Result result = JUnitCore.runClasses(testing.class);
