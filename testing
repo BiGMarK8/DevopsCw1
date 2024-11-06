@@ -1,0 +1,42 @@
+import org.junit.Test;
+import static org.mockito.Mockito.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class Dec2HexTest {
+
+    @Test
+    public void testNoInput() {
+        // Test case when no argument is provided.
+        String[] args = {};
+        Dec2Hex.main(args); // This should log an error message about no input.
+    }
+
+    @Test
+    public void testInvalidInteger() {
+        // Test case when invalid integer is provided.
+        String[] args = {"abc"};
+        Dec2Hex.main(args); // This should log an error about invalid integer input.
+    }
+
+    @Test
+    public void testZeroInput() {
+        // Test case when input is zero.
+        String[] args = {"0"};
+        Dec2Hex.main(args); // This should log "Hexadecimal representation is: 0"
+    }
+
+    @Test
+    public void testValidPositiveInteger() {
+        // Test case when a valid positive integer is provided.
+        String[] args = {"123"};
+        Dec2Hex.main(args); // This should log the conversion and hexadecimal value.
+    }
+
+    @Test
+    public void testHexadecimalConversion() {
+        // Test case when a non-zero integer is provided for hexadecimal conversion.
+        String[] args = {"255"};
+        Dec2Hex.main(args); // This should log the conversion to hexadecimal "FF".
+    }
+}

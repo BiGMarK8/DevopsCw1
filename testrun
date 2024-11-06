@@ -1,0 +1,34 @@
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.notification.Failure;
+
+public class TestRunner {
+    public static void main(String[] args) {
+        // Run tests from Dec2HexTest class
+        Result result = JUnitCore.runClasses(testing.class);
+
+        // Track the number of failed tests
+        int fails = 0;
+
+        // Process and print test failures, if any
+        for (Failure failure : result.getFailures()) {
+            System.out.println("Test failure: " + failure.toString());
+            fails++;
+        }
+
+        try {
+            // Throw an exception if there are any test failures
+            if (fails > 0) {
+                throw new Exception(fails + " tests failed");
+            }
+            System.out.println("All tests passed: " + result.wasSuccessful());
+        } catch (Exception e) {
+            // Print failure message with count of failed tests and exit with status 1
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }
+
+        // Exit with status 0 if all tests passed
+        System.exit(0);
+    }
+}
