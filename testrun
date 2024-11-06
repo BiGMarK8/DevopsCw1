@@ -1,34 +1,36 @@
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
+import java.lang.Exception;
 
-public class TestRunner {
-    public static void main(String[] args) {
-        // Run tests from Dec2HexTest class
-        Result result = JUnitCore.runClasses(testing.class);
+public class testrun {
+   public static void main(String[] args) {
+      // Run the tests in Dec2HexTest class
+      Result result = JUnitCore.runClasses(testing.class);
 
-        // Track the number of failed tests
-        int fails = 0;
+      int fails = 0;
+      try {
+          // Iterate through the failures (if any) and print them
+          for (Failure failure : result.getFailures()) {
+             System.out.println(failure.toString());
+             fails++;
+          }
+          
+          // If there are any failed tests, throw an exception
+          if (fails > 0) {
+            throw new Exception();
+          }
 
-        // Process and print test failures, if any
-        for (Failure failure : result.getFailures()) {
-            System.out.println("Test failure: " + failure.toString());
-            fails++;
-        }
+          // Print if all tests were successful
+          System.out.println("All tests passed: " + result.wasSuccessful());
+      }
+      catch (Exception e) {
+          // Print the number of failed tests
+          System.out.println(fails + " tests failed.");
+          System.exit(1);
+      }
 
-        try {
-            // Throw an exception if there are any test failures
-            if (fails > 0) {
-                throw new Exception(fails + " tests failed");
-            }
-            System.out.println("All tests passed: " + result.wasSuccessful());
-        } catch (Exception e) {
-            // Print failure message with count of failed tests and exit with status 1
-            System.out.println(e.getMessage());
-            System.exit(1);
-        }
-
-        // Exit with status 0 if all tests passed
-        System.exit(0);
-    }
+      // Exit with status code 0 if all tests passed
+      System.exit(0);
+   }
 }
