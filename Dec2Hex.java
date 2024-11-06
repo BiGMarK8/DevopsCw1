@@ -2,28 +2,33 @@ import java.util.Scanner;
 
 public class Dec2Hex {
     public static void main(String[] args) {
-        // create scanner
-        Scanner scanner = new Scanner(System.in);
-        // ask user to input interger
-        System.out.print("Please enter an integer to convert to hexadecimal: ");
-        // store num
+        // Check if a command-line argument is provided
+        if (args.length == 0) {
+            // erros message no input provided
+            System.err.println("Error: No input provided. Please enter an integer as a command-line argument.");
+            return;
+        }
+        // store number
         int num;
 
-        // Check input is an integer
-        while (true) {
-            try {
-                num = Integer.parseInt(scanner.nextLine());
-                // Exit the loop if parsing is successful
-                break;
-            }
-            // if input is not integer
-            catch (NumberFormatException e) {
-                // display error message
-                System.err.print("Invalid input. Please enter a valid integer: ");
-            }
+        // check input is integer
+        try {
+            // check integer
+            num = Integer.parseInt(args[0]);
+
         }
-        // close scanner
-        scanner.close();
+        // catch the error if not valid integer
+        catch (NumberFormatException e) {
+            // show error message
+            System.err.println("Error: Input is not a valid integer. Please enter a valid integer as input.");
+            return;
+        }
+
+        // Handle the case where input is zero
+        if (num == 0) {
+            System.out.println("Hexadecimal representation is: 0");
+            return;
+        }
 
         // if input is 0
         if (num == 0) {
