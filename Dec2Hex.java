@@ -1,7 +1,7 @@
 import java.util.logging.Logger;
 
 public class Dec2Hex {
-    // Create a logger
+    // Create a logger instance
     private static final Logger logger = Logger.getLogger(Dec2Hex.class.getName());
 
     public static void main(String[] args) {
@@ -40,7 +40,7 @@ public class Dec2Hex {
         StringBuilder hexadecimal = new StringBuilder();
 
         // Log the decimal number that is being converted
-        logger.info("Converting the Decimal Value " + num + " to Hex...");
+        logger.info(String.format("Converting the Decimal Value %d to Hex...", num));
 
         // Convert decimal to hexadecimal
         // Loop until num becomes 0
@@ -53,7 +53,9 @@ public class Dec2Hex {
             num = num / 16;
         }
 
-        // Log the hexadecimal value
-        logger.info("Hexadecimal representation is: " + hexadecimal.toString());
+        // Conditionally log the hexadecimal value if num is not zero
+        if (hexadecimal.length() > 0) {
+            logger.info(String.format("Hexadecimal representation is: %s", hexadecimal.toString()));
+        }
     }
 }
