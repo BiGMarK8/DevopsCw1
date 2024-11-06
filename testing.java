@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 public class testing {
 
     // This will be used for setting up before each test if needed
-    public Dec2HexTest() {}
+    public testing() {}
 
     // Before annotation is used to setup any necessary setup before each test
     @Before
