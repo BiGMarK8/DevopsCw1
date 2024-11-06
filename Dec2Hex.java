@@ -1,3 +1,4 @@
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Dec2Hex {
@@ -8,7 +9,7 @@ public class Dec2Hex {
         // Check if a command-line argument is provided
         if (args.length == 0) {
             // Log an error message using the logger
-            logger.severe("Error: No input provided. Please enter an integer as a command-line argument.");
+            logger.log(Level.SEVERE, "Error: No input provided. Please enter an integer as a command-line argument.");
             return;
         }
 
@@ -23,25 +24,25 @@ public class Dec2Hex {
         // Catch the error if the input is not a valid integer
         catch (NumberFormatException e) {
             // Log an error message using the logger
-            logger.severe("Error: Input is not a valid integer. Please enter a valid integer as input.");
+            logger.log(Level.SEVERE, "Error: Input is not a valid integer. Please enter a valid integer as input.", e);
             return;
         }
 
         // Handle the case where input is zero
         if (num == 0) {
-            logger.info("Hexadecimal representation is: 0");
+            logger.log(Level.INFO, "Hexadecimal representation is: 0");
             return;
         }
 
         // Declare values for hexadecimal characters (0-9 and A-F)
         char[] hexChars = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
-        
+
         // Use StringBuilder to build the hexadecimal string
         StringBuilder hexadecimal = new StringBuilder();
 
-        // Log the decimal number that is being converted, but only if num is non-zero
-        if (num != 0) {
-            logger.info(String.format("Converting the Decimal Value %d to Hex...", num));
+        // Conditionally log the decimal number that is being converted
+        if (logger.isLoggable(Level.INFO)) {  // Check if INFO level logging is enabled
+            logger.log(Level.INFO, "Converting the Decimal Value {0} to Hex...", num);
         }
 
         // Convert decimal to hexadecimal
@@ -56,8 +57,8 @@ public class Dec2Hex {
         }
 
         // Conditionally log the hexadecimal value only if it's non-zero
-        if (hexadecimal.length() > 0) {
-            logger.info(String.format("Hexadecimal representation is: %s", hexadecimal.toString()));
+        if (hexadecimal.length() > 0 && logger.isLoggable(Level.INFO)) {
+            logger.log(Level.INFO, "Hexadecimal representation is: {0}", hexadecimal.toString());
         }
     }
 }
