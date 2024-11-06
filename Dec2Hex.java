@@ -39,8 +39,10 @@ public class Dec2Hex {
         // Use StringBuilder to build the hexadecimal string
         StringBuilder hexadecimal = new StringBuilder();
 
-        // Log the decimal number that is being converted
-        logger.info(String.format("Converting the Decimal Value %d to Hex...", num));
+        // Log the decimal number that is being converted, but only if num is non-zero
+        if (num != 0) {
+            logger.info(String.format("Converting the Decimal Value %d to Hex...", num));
+        }
 
         // Convert decimal to hexadecimal
         // Loop until num becomes 0
@@ -53,7 +55,7 @@ public class Dec2Hex {
             num = num / 16;
         }
 
-        // Conditionally log the hexadecimal value if num is not zero
+        // Conditionally log the hexadecimal value only if it's non-zero
         if (hexadecimal.length() > 0) {
             logger.info(String.format("Hexadecimal representation is: %s", hexadecimal.toString()));
         }
