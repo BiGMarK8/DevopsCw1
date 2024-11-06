@@ -2,7 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
-public class Dec2HexTest {
+public class testing {
 
     // This will be used for setting up before each test if needed
     public Dec2HexTest() {}
