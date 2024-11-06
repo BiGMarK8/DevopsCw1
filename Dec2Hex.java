@@ -58,7 +58,7 @@ public class Dec2Hex {
 
         // Conditionally log the hexadecimal value only if it's non-zero
         if (hexadecimal.length() > 0 && logger.isLoggable(Level.INFO)) {
-            logger.log(Level.INFO, "Hexadecimal representation is: {0}", hexadecimal.toString());
+            logger.log(Level.INFO, "Hexadecimal representation is: {0}", hexadecimal);
         }
     }
 }
