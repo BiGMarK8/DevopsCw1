@@ -4,22 +4,22 @@ public class Dec2Hex {
     public static void main(String[] args) {
         // Check if a command-line argument is provided
         if (args.length == 0) {
-            // erros message no input provided
+            // Error message: No input provided
             System.err.println("Error: No input provided. Please enter an integer as a command-line argument.");
             return;
         }
-        // store number
+
+        // Store number
         int num;
 
-        // check input is integer
+        // Check input is an integer
         try {
-            // check integer
+            // Parse the input argument to an integer
             num = Integer.parseInt(args[0]);
-
         }
-        // catch the error if not valid integer
+        // Catch the error if the input is not a valid integer
         catch (NumberFormatException e) {
-            // show error message
+            // Show error message
             System.err.println("Error: Input is not a valid integer. Please enter a valid integer as input.");
             return;
         }
@@ -30,30 +30,25 @@ public class Dec2Hex {
             return;
         }
 
-        // if input is 0
-        if (num == 0) {
-            // print message
-            System.out.println("Hexadecimal representation is: 0");
-            return;
-        }
-
-        // declare values
+        // Declare values for hexadecimal characters (0-9 and A-F)
         char[] hexChars = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
         String hexadecimal = "";
-        // print what number the program is converting
+
+        // Print the decimal number that is being converted
         System.out.println("Converting the Decimal Value " + num + " to Hex...");
 
         // Convert decimal to hexadecimal
-        // when number is not equal to 0
+        // Loop until num becomes 0
         while (num != 0) {
-            // calculate remainder when num is divided by 16
+            // Calculate remainder when num is divided by 16
             int rem = num % 16;
-            // hexadecimal equals matching rem to hexchars character
+            // Concatenate the corresponding hexadecimal character to the result string
             hexadecimal = hexChars[rem] + hexadecimal;
-            // update num
+            // Update num to be the quotient of num divided by 16
             num = num / 16;
         }
-        // print the hexadecimal value
+
+        // Print the hexadecimal value
         System.out.println("Hexadecimal representation is: " + hexadecimal);
     }
 }
