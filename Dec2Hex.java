@@ -2,13 +2,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Dec2Hex {
-    // Create a logger instance
     private static final Logger logger = Logger.getLogger(Dec2Hex.class.getName());
 
     public static void main(String[] args) {
         // Check if a command-line argument is provided
         if (args.length == 0) {
-            // Log an error message using the logger
             logger.log(Level.SEVERE, "Error: No input provided. Please enter an integer as a command-line argument.");
             return;
         }
@@ -18,12 +16,10 @@ public class Dec2Hex {
 
         // Check if the input is an integer
         try {
-            // Parse the input argument to an integer
             num = Integer.parseInt(args[0]);
         }
         // Catch the error if the input is not a valid integer
         catch (NumberFormatException e) {
-            // Log an error message using the logger
             logger.log(Level.SEVERE, "Error: Input is not a valid integer. Please enter a valid integer as input.", e);
             return;
         }
@@ -41,7 +37,7 @@ public class Dec2Hex {
         StringBuilder hexadecimal = new StringBuilder();
 
         // Conditionally log the decimal number that is being converted
-        if (logger.isLoggable(Level.INFO)) {  // Check if INFO level logging is enabled
+        if (logger.isLoggable(Level.INFO)) {
             logger.log(Level.INFO, "Converting the Decimal Value {0} to Hex...", num);
         }
 
