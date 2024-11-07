@@ -30,7 +30,7 @@ public class Dec2Hex {
         
         // Log the result
         if (hexValue != null) {
-            logger.log(Level.INFO, "Hexadecimal representation is: {0}", hexValue);
+            logger.log(Level.INFO, "Hexadecimal is: {0}", hexValue);
         }
     }
 
