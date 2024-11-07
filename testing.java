@@ -4,16 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 public class testing {
 
-    // This will be used for setting up before each test if needed
-    public testing() {}
-
-    // Before annotation is used to setup any necessary setup before each test
-    @Before
-    public void setUp() {
-        // Any necessary setup for the tests can go here.
-        // In this case, since Dec2Hex is a utility class with static methods, we don't need to initialize anything
-    }
-
     // Test for converting the decimal 1 to hexadecimal (expected "1")
     @Test
     public void testConvertToHexOne() {
