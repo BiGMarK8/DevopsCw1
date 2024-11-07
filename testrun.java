@@ -3,14 +3,23 @@ import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 import java.util.logging.Logger;
 
+// Define the custom exception class
+class InvalidValueException extends RuntimeException {
+    // Constructor accepting a message for the exception
+    public InvalidValueException(String message) {
+        super(message);
+    }
+}
+
+// Main class to run tests
 public class testrun {
 
     // Initialize logger
     private static final Logger logger = Logger.getLogger(testrun.class.getName());
 
     public static void main(String[] args) {
-        // Run the tests in the 'testing' class
-        Result result = JUnitCore.runClasses(testing.class);
+        // Run the tests in the 'testing' class (replace with your test class if different)
+        Result result = JUnitCore.runClasses(testing.class);  // Ensure testing class exists
 
         int fails = 0;
         try {
