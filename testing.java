@@ -59,10 +59,7 @@ public class Testing {
             // If no exception is thrown, this test should fail
             assert false : "Expected IllegalArgumentException was not thrown";
         } catch (IllegalArgumentException e) {
-<<<<<<< HEAD
-=======
             logger.severe("Error: " + e.getMessage());  // Log the error message
->>>>>>> testing-changes
             assertEquals("No input argument provided.", e.getMessage());
         }
     }
@@ -70,48 +67,13 @@ public class Testing {
     // Test for non-integer argument (should not fail execution but handle gracefully)
     @Test
     public void testNonIntegerArgument() {
-<<<<<<< HEAD
-        try {
-            String[] args = {"Hello"};  // Non-integer argument
-            if (args.length > 0) {
-                try {
-                    Integer.parseInt(args[0]);  // Attempt to parse the argument
-                } catch (NumberFormatException e) {
-                    // Handle non-integer argument gracefully by printing a message
-                    System.out.println("Non-integer argument received: " + args[0]);
-                }
-            }
-            // We expect no exceptions, just graceful handling of the non-integer argument
-        } catch (Exception e) {
-            // We don't expect any failure
-            assert false : "Exception should not have been thrown";
-        }
-=======
         String[] args = {"Hello"};  // Non-integer argument
         handleNonIntegerArgument(args);
->>>>>>> testing-changes
     }
 
     // Test for valid integer argument
     @Test
     public void testValidIntegerArgument() {
-<<<<<<< HEAD
-        try {
-            String[] args = {"42"};  // Valid integer argument
-            if (args.length > 0) {
-                try {
-                    Integer.parseInt(args[0]);  // Attempt to parse the argument
-                } catch (NumberFormatException e) {
-                    // If the argument is not a valid integer, handle it gracefully
-                    System.out.println("Invalid integer argument: " + args[0]);
-                    assert false : "Exception should not have been thrown for valid integer input";
-                }
-            }
-            // No exception should be thrown
-        } catch (Exception e) {
-            // Fail if an exception is thrown for valid integer argument
-            assert false : "Exception should not have been thrown for valid integer input";
-=======
         String[] args = {"42"};  // Valid integer argument
         handleNonIntegerArgument(args);
     }
@@ -132,7 +94,6 @@ public class Testing {
         } catch (Exception e) {
             // We don't expect any failure
             assert false : "Exception should not have been thrown";
->>>>>>> testing-changes
         }
     }
 }
