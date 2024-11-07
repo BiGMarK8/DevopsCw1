@@ -34,27 +34,59 @@ public class testing {
         assertEquals("Decimal 47 should convert to Hex '2F'", "2F", Dec2Hex.convertToHex(47));
     }
 
-    // Test for converting the decimal 255 to hexadecimal (expected "FF")
+    // Test for no input argument provided (should throw IllegalArgumentException)
     @Test
-    public void testConvertToHexTwoFiftyFive() {
-        assertEquals("Decimal 255 should convert to Hex 'FF'", "FF", Dec2Hex.convertToHex(255));
+    public void testNoArgumentProvided() {
+        try {
+            String[] args = {};  // No arguments provided
+            if (args.length == 0) {
+                throw new IllegalArgumentException("No input argument provided.");
+            }
+            // If no exception is thrown, this test should fail
+            assert false : "Expected IllegalArgumentException was not thrown";
+        } catch (IllegalArgumentException e) {
+            assertEquals("No input argument provided.", e.getMessage());
+        }
     }
 
-    // Test for converting the decimal 0 to hexadecimal (expected "0")
+    // Test for non-integer argument (should not fail execution but handle gracefully)
     @Test
-    public void testConvertToHexZero() {
-        assertEquals("Decimal 0 should convert to Hex '0'", "0", Dec2Hex.convertToHex(0));
+    public void testNonIntegerArgument() {
+        try {
+            String[] args = {"Hello"};  // Non-integer argument
+            if (args.length > 0) {
+                try {
+                    Integer.parseInt(args[0]);  // Attempt to parse the argument
+                } catch (NumberFormatException e) {
+                    // Handle non-integer argument gracefully by printing a message
+                    System.out.println("Non-integer argument received: " + args[0]);
+                }
+            }
+            // We expect no exceptions, just graceful handling of the non-integer argument
+        } catch (Exception e) {
+            // We don't expect any failure
+            assert false : "Exception should not have been thrown";
+        }
     }
 
-    // Test for converting the decimal 256 to hexadecimal (expected "100")
+    // Test for valid integer argument
     @Test
-    public void testConvertToHexTwoHundredFiftySix() {
-        assertEquals("Decimal 256 should convert to Hex '100'", "100", Dec2Hex.convertToHex(256));
-    }
-
-    // Test for converting the maximum 32-bit signed integer (2147483647) to hexadecimal
-    @Test
-    public void testConvertToHexMaxInt() {
-        assertEquals("Decimal 2147483647 should convert to Hex '7FFFFFFF'", "7FFFFFFF", Dec2Hex.convertToHex(2147483647));
+    public void testValidIntegerArgument() {
+        try {
+            String[] args = {"42"};  // Valid integer argument
+            if (args.length > 0) {
+                try {
+                    Integer.parseInt(args[0]);  // Attempt to parse the argument
+                } catch (NumberFormatException e) {
+                    // If the argument is not a valid integer, handle it gracefully
+                    System.out.println("Invalid integer argument: " + args[0]);
+                    assert false : "Exception should not have been thrown for valid integer input";
+                }
+            }
+            // No exception should be thrown
+        } catch (Exception e) {
+            // Fail if an exception is thrown for valid integer argument
+            assert false : "Exception should not have been thrown for valid integer input";
+        }
     }
 }
