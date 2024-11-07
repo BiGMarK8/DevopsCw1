@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Testing {
+public class testing {
 
     // Create a logger instance for the class
     Logger logger = Logger.getLogger(getClass().getName());
