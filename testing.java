@@ -68,18 +68,18 @@ public class testing {
     @Test
     public void testNonIntegerArgument() {
         String[] args = {"Hello"};  // Non-integer argument
-        handleNonIntegerArgument(args);
+        handleArgument(args);
     }
 
     // Test for valid integer argument
     @Test
     public void testValidIntegerArgument() {
         String[] args = {"42"};  // Valid integer argument
-        handleNonIntegerArgument(args);
+        handleArgument(args);
     }
 
     // Extracted method to handle non-integer and valid integer arguments
-    private void handleNonIntegerArgument(String[] args) {
+    private void handleArgument(String[] args) {
         try {
             if (args.length > 0) {
                 try {
@@ -90,8 +90,9 @@ public class testing {
                     logger.warning("Non-integer argument received: " + args[0]);
                 }
             }
-            // We expect no exceptions, just graceful handling of the non-integer argument
         } catch (Exception e) {
+            // Log unexpected exceptions
+            logger.severe("Unexpected error occurred: " + e.getMessage());
             // We don't expect any failure
             assert false : "Exception should not have been thrown";
         }
