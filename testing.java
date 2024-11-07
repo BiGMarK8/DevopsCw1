@@ -2,6 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import java.util.logging.Logger;
+import java.util.logging.Level;
 
 public class testing {
 
@@ -59,7 +60,7 @@ public class testing {
             // If no exception is thrown, this test should fail
             assert false : "Expected IllegalArgumentException was not thrown";
         } catch (IllegalArgumentException e) {
-            logger.severe("Error: " + e.getMessage());  // Log the error message
+            logger.log(Level.SEVERE, "Error: {0}", e.getMessage());  // Using built-in formatting
             assertEquals("No input argument provided.", e.getMessage());
         }
     }
@@ -80,21 +81,34 @@ public class testing {
 
     // Extracted method to handle non-integer and valid integer arguments
     private void handleArgument(String[] args) {
+        if (args.length > 0) {
+            handleArgumentParsing(args[0]);
+        }
+    }
+
+    // Method to handle the parsing of the argument
+    private void handleArgumentParsing(String arg) {
         try {
-            if (args.length > 0) {
-                try {
-                    Integer.parseInt(args[0]);  // Attempt to parse the argument
-                    logger.info("Valid integer argument received: " + args[0]);
-                } catch (NumberFormatException e) {
-                    // Handle non-integer argument gracefully by logging a message
-                    logger.warning("Non-integer argument received: " + args[0]);
-                }
-            }
-        } catch (Exception e) {
-            // Log unexpected exceptions
-            logger.severe("Unexpected error occurred: " + e.getMessage());
-            // We don't expect any failure
-            assert false : "Exception should not have been thrown";
+            // Attempt to parse the argument
+            Integer.parseInt(arg);
+            logger.info("Valid integer argument received: " + arg);
+        } catch (NumberFormatException e) {
+            // Handle non-integer argument gracefully by logging a message
+            logger.log(Level.WARNING, "Non-integer argument received: {0}", arg);  // Using built-in formatting
+        }
+    }
+
+    // Using logger with Supplier (lazy evaluation for performance)
+    private void logErrorIfNeeded(String errorMessage) {
+        if (logger.isLoggable(Level.SEVERE)) {
+            logger.log(Level.SEVERE, () -> "Something went wrong: " + errorMessage);  // Lazy evaluation
+        }
+    }
+
+    // Example of checking conditions and throwing exceptions
+    private void checkArgument(int arg) {
+        if (arg <= 0) {
+            throw new IllegalStateException(String.format("Arg must be positive, but got %d", arg));  // String formatting
         }
     }
 }
